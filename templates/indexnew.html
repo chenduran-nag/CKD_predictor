@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CKD Prediction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
+        }
+        input, select {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+        input:focus, select:focus {
+            border-color: #667eea;
+            outline: none;
+        }
+        button {
+            width: 100%;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 15px;
+            border: none;
+            border-radius: 25px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-bottom: 20px;
+            color: #667eea;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="/" class="back-link">← Back to Home</a>
+        <h1>CKD Prediction Form</h1>
+        
+        <form action="/predict" method="POST">
+            <div class="form-group">
+                <label>Hemoglobin (g/dL):</label>
+                <input type="number" name="hemogloblin" required step="0.1" placeholder="e.g., 12.5">
+            </div>
+            
+            <div class="form-group">
+                <label>Packed Cell Volume (%):</label>
+                <input type="number" name="packed_cell_volume" required step="0.1" placeholder="e.g., 40">
+            </div>
+            
+            <div class="form-group">
+                <label>Specific Gravity:</label>
+                <input type="number" name="specific_gravity" required step="0.001" placeholder="e.g., 1.020">
+            </div>
+            
+            <div class="form-group">
+                <label>Red Blood Cell Count (millions/μL):</label>
+                <input type="number" name="red_blood_cell_count" required step="0.1" placeholder="e.g., 4.5">
+            </div>
+            
+            <div class="form-group">
+                <label>Hypertension:</label>
+                <select name="hypertension" required>
+                    <option value="">Select</option>
+                    <option value="1">Yes</option>
+                    <option value="0">No</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label>Diabetes:</label>
+                <select name="diabetesmillitus" required>
+                    <option value="">Select</option>
+                    <option value="1">Yes</option>
+                    <option value="0">No</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label>Albumin (g/dL):</label>
+                <input type="number" name="albumin" required step="0.1" placeholder="e.g., 4.0">
+            </div>
+            
+            <div class="form-group">
+                <label>Blood Glucose Random (mg/dL):</label>
+                <input type="number" name="blood_glucose_random" required step="0.1" placeholder="e.g., 120">
+            </div>
+            
+            <button type="submit">Predict CKD</button>
+        </form>
+    </div>
+</body>
+</html>

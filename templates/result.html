@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CKD Prediction Result</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .container {
+            max-width: 500px;
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            text-align: center;
+        }
+        
+        .result-positive {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+        }
+        
+        .result-negative {
+            background: linear-gradient(135deg, #26d0ce, #1dd1a1);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: white;
+        }
+        
+        .emoji {
+            font-size: 4rem;
+            margin: 20px 0;
+        }
+        
+        .message {
+            font-size: 1.2rem;
+            color: #333;
+            margin: 20px 0;
+        }
+        
+        .advice {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            text-align: left;
+        }
+        
+        .advice h3 {
+            color: #333;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .advice ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .advice li {
+            padding: 5px 0;
+            padding-left: 20px;
+            position: relative;
+        }
+        
+        .advice li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #28a745;
+            font-weight: bold;
+        }
+        
+        .buttons {
+            margin-top: 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            margin: 0 10px;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            transition: transform 0.2s;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+        }
+        
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+        }
+    </style>
+</head>
+<body id="body">
+    <div class="container">
+        <div id="result-content">
+            <h1 id="title">{{ prediction_text }}</h1>
+            <div class="emoji" id="emoji">😱</div>
+            <div class="message" id="message">{{ prediction_text }}</div>
+            
+            <div class="advice" id="advice">
+                <h3>⚠️ Important Next Steps</h3>
+                <ul>
+                    <li>Consult a kidney specialist immediately</li>
+                    <li>Get comprehensive blood tests</li>
+                    <li>Monitor blood pressure and sugar</li>
+                    <li>Follow kidney-friendly diet</li>
+                    <li>Stay hydrated</li>
+                    <li>Avoid harmful medications</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="buttons">
+            <a href="/Prediction" class="btn btn-primary">Test Again</a>
+            <a href="/" class="btn btn-secondary">Home</a>
+        </div>
+    </div>
+
+    <script>
+        const prediction = '{{ prediction_text }}';
+        const body = document.getElementById('body');
+        const emoji = document.getElementById('emoji');
+        const advice = document.getElementById('advice');
+        
+        if (prediction === 'No CKD Detected') {
+            body.className = 'result-negative';
+            emoji.textContent = '🎉';
+            advice.innerHTML = `
+                <h3>🎉 Great News!</h3>
+                <ul>
+                    <li>Continue healthy lifestyle</li>
+                    <li>Regular health checkups</li>
+                    <li>Stay hydrated</li>
+                    <li>Exercise regularly</li>
+                    <li>Monitor blood pressure</li>
+                </ul>
+            `;
+        } else {
+            body.className = 'result-positive';
+            emoji.textContent = '😱';
+        }
+    </script>
+</body>
+</html>
